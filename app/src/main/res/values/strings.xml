@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LocalMusic</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="nombre">android.widget.TextView.setText(java.lang.CharSequence)</string>
+    <string name="facebook_app_id">1926860710953561</string> <string name="fb_login_protocol_scheme">fb1926860710953561</string>
+
+</resources>

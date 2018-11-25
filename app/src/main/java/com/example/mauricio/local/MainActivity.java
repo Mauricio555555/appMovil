@@ -1,9 +1,14 @@
 package com.example.mauricio.local;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,29 +20,41 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView nombre, Email;
-    private  login log;
+
+    EditText Nombre;
+    EditText Apellido;
+    EditText Edad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Nombre = (EditText) findViewById(R.id.nombre);
+        Apellido = (EditText) findViewById(R.id.apellido);
+        Edad = (EditText) findViewById(R.id.edad);
         setSupportActionBar(toolbar);
-
-        nombre = (TextView) findViewById(R.id.nombre);
-        Email = (TextView) findViewById(R.id.correo);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Fragment fragment = null;
+                Class fragmentClass = InicioFragment.class;
+                try {
+                    fragment = (Fragment) fragmentClass.newInstance();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
             }
         });
 
@@ -49,87 +66,131 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+        Fragment fragment = null;
+        Class fragmentClass = InicioFragment.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+        setTitle("Cacied 2017");
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+        @Override
+        public void onBackPressed ()
+        {
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            if (drawer.isDrawerOpen(GravityCompat.START))
+            {
+                drawer.closeDrawer(GravityCompat.START);
+            } else
+                {
+                super.onBackPressed();
+            }
+        }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.main, menu);
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
-    }
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_shar) {
-            AlertDialog.Builder uBuilder2 = new AlertDialog.Builder(MainActivity.this);
-            View aView2 = getLayoutInflater().inflate(R.layout.acercade, null);
-            uBuilder2.setView(aView2);
-            final AlertDialog dialog2 = uBuilder2.create();
-            dialog2.show();
-            Button close = (Button) aView2.findViewById(R.id.close);
-
-            close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog2.cancel();
-                }
-            });
-
+            return super.onOptionsItemSelected(item);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+        @SuppressWarnings("StatementWithEmptyBody")
+        @Override
+        public boolean onNavigationItemSelected (MenuItem item){
+            // Handle navigation view item clicks here.
+            int id = item.getItemId();
 
-    public void nombre()
+            if (id == R.id.nav_camera) {
+                // Handle the camera action
+            } else if (id == R.id.nav_gallery) {
+
+            } else if (id == R.id.nav_slideshow) {
+
+            } else if (id == R.id.nav_manage) {
+
+            } else if (id == R.id.nav_share) {
+
+            } else if (id == R.id.nav_shar) {
+                AlertDialog.Builder uBuilder2 = new AlertDialog.Builder(MainActivity.this);
+                View aView2 = getLayoutInflater().inflate(R.layout.acercade, null);
+                uBuilder2.setView(aView2);
+                final AlertDialog dialog2 = uBuilder2.create();
+                dialog2.show();
+                Button close = (Button) aView2.findViewById(R.id.close);
+
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog2.cancel();
+                    }
+                });
+
+            }
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+
+
+    public void guardar (View view)
     {
-        nombre.setText(log.nombre());
+        String nom = "Hola";
+        String ape = "lol";
+        int ed = 1;
+
+        try {
+            Guardar save = new Guardar(this, "DEMODB", null, 1);
+            SQLiteDatabase db = save.getWritableDatabase();
+            if (db != null) {
+                ContentValues reValues = new ContentValues();
+                reValues.put("Nombre", nom);
+                reValues.put("Apellido", ape);
+                reValues.put("Edad", ed);
+                long i = db.insert("Persona", null, reValues);
+                if (i > 0) {
+                    Toast.makeText(this, "Registro insertado", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else
+            {
+                Toast.makeText(this, "Registro fallo", Toast.LENGTH_SHORT).show();
+            }
+        }
+        catch (Exception e)
+        {
+            e.getMessage();
+        }
+
     }
-
-    public void correo()
-    {
-        Email.setText(log.correo());
-    }
-
-
 }
+
+
+
+
+
+
+
+
+

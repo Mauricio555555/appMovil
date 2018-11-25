@@ -10,7 +10,7 @@ public class ScreenSplash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen_splash);
+        setContentView(R.layout.screen_splash);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -18,6 +18,6 @@ public class ScreenSplash extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
-        },1600);
+        },1800);
     }
 }

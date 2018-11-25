@@ -17,6 +17,11 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Slideshow" />
         <item
+            android:id="@+id/nav_shar"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/ic_perm_device_information_black_24dp"
+            android:title="Acerca de..." />
+        <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
             android:title="Tools" />

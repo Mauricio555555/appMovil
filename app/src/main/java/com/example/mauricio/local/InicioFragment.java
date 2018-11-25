@@ -60,11 +60,11 @@ public class InicioFragment extends Fragment {
 
                       }
         });
-     /*   ver.setOnClickListener(new View.OnClickListener() {
+       ver.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //  Log.e("fdgfdfgfgfgfh--->","SI");
                 Fragment fragment = null;
-                Class fragmentClass= PonenciasFragment.class;
+                Class fragmentClass= CargarFragment.class;
                 try{
                     fragment = (Fragment) fragmentClass.newInstance();
                 }catch (Exception e){
@@ -74,7 +74,7 @@ public class InicioFragment extends Fragment {
                 fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
             }
-        });*/
+        });
         acercade.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //  Log.e("fdgfdfgfgfgfh--->","SI");

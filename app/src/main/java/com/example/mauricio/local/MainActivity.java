@@ -2,6 +2,7 @@ package com.example.mauricio.local;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,8 +20,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,19 +122,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         public boolean onNavigationItemSelected (MenuItem item){
             // Handle navigation view item clicks here.
+            Fragment fragment = null;
+            Class fragmentClass= InicioFragment.class;
             int id = item.getItemId();
 
-            if (id == R.id.nav_camera) {
-                // Handle the camera action
+            if (id == R.id.action_listar) {
+                fragmentClass = CargarFragment.class;
             } else if (id == R.id.nav_gallery) {
 
             } else if (id == R.id.nav_slideshow) {
 
             } else if (id == R.id.nav_manage) {
 
-            } else if (id == R.id.nav_share) {
+            } else if (id == R.id.nav_camera) {
 
-            } else if (id == R.id.nav_shar) {
+            }else if (id == R.id.nav_share) {
                 AlertDialog.Builder uBuilder2 = new AlertDialog.Builder(MainActivity.this);
                 View aView2 = getLayoutInflater().inflate(R.layout.acercade, null);
                 uBuilder2.setView(aView2);
@@ -146,7 +151,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
 
+            } else if (id == R.id.nav_send) {
+                finish();
             }
+
+            try{
+                fragment = (Fragment) fragmentClass.newInstance();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+            FragmentManager fragmentManager=getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
+
+            item.setChecked(true);
+            setTitle(item.getTitle());
 
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
@@ -173,16 +193,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     Toast.makeText(this, "Registro insertado", Toast.LENGTH_SHORT).show();
                 }
             }
-            else
-            {
-                Toast.makeText(this, "Registro fallo", Toast.LENGTH_SHORT).show();
-            }
         }
         catch (Exception e)
         {
             e.getMessage();
         }
 
+    }
+
+    public void cargar(View view){
+        Guardar save = new Guardar(this, "DEMODB", null, 1);
+        SQLiteDatabase db = save.getReadableDatabase();
+        if (db != null) {
+            Cursor c = db.rawQuery("select * from Persona", null);
+            int cantidad = c.getCount();
+            int  i = 0;
+            String[] arreglo = new String[cantidad];
+            if(c.moveToFirst())
+            {
+                do {
+                    String linea = c.getInt(0)+" "+c.getString(1)+" "+c.getString(2)+" "+c.getInt(3);
+                    arreglo[i] = linea;
+                    i++;
+                }
+                while (c.moveToNext());
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, arreglo);
+            ListView listView = (ListView) findViewById(R.id.list);
+            listView.setAdapter(adapter);
+        }
     }
 }
 

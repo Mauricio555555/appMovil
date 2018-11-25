@@ -7,7 +7,7 @@ import android.support.v4.app.Fragment;
 
 public class Guardar extends SQLiteOpenHelper  {
 
-    String table="CREATE TABLE persona(Id INTEGER PRIMARY KEY AUTOINCREMENT, Nombre Text, Apellido Text, Edad INTEGER)";
+    String table="CREATE TABLE Persona(Id INTEGER PRIMARY KEY AUTOINCREMENT, Nombre Text, Apellido Text, Edad INTEGER)";
 
     public Guardar( Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);

@@ -4,7 +4,12 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
-        android:title="Acerca de ..."
+        android:title="Acerca de"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_listar"
+        android:orderInCategory="100"
+        android:title="Lista"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_salir"

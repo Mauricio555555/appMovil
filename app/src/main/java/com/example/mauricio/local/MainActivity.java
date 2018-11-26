@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.flContent, fragment).commit();
 
-        setTitle("Cacied 2017");
+        setTitle("Local Music");
     }
 
         @Override
@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             int id = item.getItemId();
 
             if (id == R.id.action_listar) {
-                fragmentClass = CargarFragment.class;
+                fragmentClass = InicioFragment.class;
             } else if (id == R.id.nav_gallery) {
-
-            } else if (id == R.id.nav_slideshow) {
-
+                fragmentClass = GuardarFragment.class;
+            } else if (id == R.id.action_listar) {
+                fragmentClass = CargarFragment.class;
             } else if (id == R.id.nav_manage) {
 
             } else if (id == R.id.nav_camera) {

@@ -7,15 +7,15 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Inicio" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Agregar" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/action_listar"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Lista" />
         <item
             android:id="@+id/nav_shar"
             android:layout_height="wrap_content"

@@ -54,6 +54,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Go
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signout = (Button) findViewById(R.id.signout);
 
+
         contin = (Button) findViewById(R.id.continuar);
         contin.setOnClickListener(this);
 
@@ -88,6 +89,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Go
         contin.setVisibility(View.GONE);
         nombre.setVisibility(View.GONE);
         Email.setVisibility(View.GONE);
+        signout.setVisibility(View.GONE);
     }
 
     @Override
@@ -150,6 +152,8 @@ public class login extends AppCompatActivity implements View.OnClickListener, Go
             Email.setText(correo());
             //Glide.vich(this).load(img_url).into(prof_v);
             update(true);
+
+
         }
         else
         {
@@ -167,6 +171,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Go
            contin.setVisibility(View.VISIBLE);
            nombre.setVisibility(View.VISIBLE);
            Email.setVisibility(View.VISIBLE);
+           signout.setVisibility(View.VISIBLE);
 
         }
         else
@@ -177,6 +182,7 @@ public class login extends AppCompatActivity implements View.OnClickListener, Go
             contin.setVisibility(View.GONE);
             nombre.setVisibility(View.GONE);
             Email.setVisibility(View.GONE);
+            signout.setVisibility(View.GONE);
         }
     }
 

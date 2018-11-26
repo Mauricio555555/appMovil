@@ -43,6 +43,7 @@
                     android:id="@+id/imageView3"
                     android:layout_width="wrap_content"
                     android:layout_height="79dp"
+                    android:src="@drawable/jc"
                     android:layout_weight="1" />
 
                 <LinearLayout
@@ -107,6 +108,7 @@
                     android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="79dp"
+                    android:src="@drawable/hm"
                     android:layout_weight="1" />
 
                 <LinearLayout

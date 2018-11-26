@@ -31,17 +31,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     EditText Nombre;
-    EditText Apellido;
+    EditText Cancion;
     EditText Edad;
+    EditText Letra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        Nombre = (EditText) findViewById(R.id.nombre);
-        Apellido = (EditText) findViewById(R.id.apellido);
-        Edad = (EditText) findViewById(R.id.edad);
+        Nombre = (EditText) findViewById(R.id.Cantante);
+        Cancion = (EditText) findViewById(R.id.Cancion);
+        Edad = (EditText) findViewById(R.id.Anio);
+        Letra = (EditText) findViewById(R.id.Letra);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -132,8 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentClass = GuardarFragment.class;
             } else if (id == R.id.action_listar) {
                 fragmentClass = CargarFragment.class;
-            } else if (id == R.id.nav_manage) {
-
             } else if (id == R.id.nav_camera) {
 
             }else if (id == R.id.nav_share) {
@@ -174,21 +174,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
-    public void guardar (View view)
+    public void guardarDatos(View view)
     {
-        String nom = "Hola";
-        String ape = "lol";
-        int ed = 1;
+        String can = "Se Te Olvido";
+        String nom = "Kalimba";
+        int ed = 2009;
+        String letra = "se te olvido que yo sin ti No puedo respirar";
 
         try {
-            Guardar save = new Guardar(this, "DEMODB", null, 1);
+            Guardar save = new Guardar(this, "DEMODBB", null, 1);
             SQLiteDatabase db = save.getWritableDatabase();
             if (db != null) {
                 ContentValues reValues = new ContentValues();
-                reValues.put("Nombre", nom);
-                reValues.put("Apellido", ape);
-                reValues.put("Edad", ed);
-                long i = db.insert("Persona", null, reValues);
+                reValues.put("Nombre", can);
+                reValues.put("Cantante", nom);
+                reValues.put("Anio", ed);
+                reValues.put("Descripcion", letra);
+                long i = db.insert("Cancion", null, reValues);
                 if (i > 0) {
                     Toast.makeText(this, "Registro insertado", Toast.LENGTH_SHORT).show();
                 }
@@ -201,18 +203,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void cargar(View view){
-        Guardar save = new Guardar(this, "DEMODB", null, 1);
+    public void cargarDatos(View view){
+        Guardar save = new Guardar(this, "DEMODBB", null, 1);
         SQLiteDatabase db = save.getReadableDatabase();
         if (db != null) {
-            Cursor c = db.rawQuery("select * from Persona", null);
+            Cursor c = db.rawQuery("select * from Cancion", null);
             int cantidad = c.getCount();
             int  i = 0;
             String[] arreglo = new String[cantidad];
             if(c.moveToFirst())
             {
                 do {
-                    String linea = c.getInt(0)+" "+c.getString(1)+" "+c.getString(2)+" "+c.getInt(3);
+                    String linea = c.getInt(0)+" "+c.getString(1)+" "+c.getString(2)+" "+c.getInt(3)+" "+c.getString(4);
                     arreglo[i] = linea;
                     i++;
                 }

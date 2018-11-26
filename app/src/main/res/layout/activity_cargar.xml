@@ -29,7 +29,7 @@
         android:layout_marginEnd="148dp"
         android:layout_marginRight="148dp"
         android:layout_marginBottom="44dp"
-        android:onClick="cargar"
+        android:onClick="cargarDatos"
         android:text="Cargar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
